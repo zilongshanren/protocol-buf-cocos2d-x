@@ -10,7 +10,7 @@ sudo apt-get install lib32stdc++6
 
 sudo apt-get install g++-multilib
 
-LIBNAME="chipmunk"
+LIBNAME="protobuf"
 
 rm -rf prebuilt/linux
 mkdir build.linux
