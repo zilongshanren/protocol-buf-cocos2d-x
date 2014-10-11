@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LIBNAME="chipmunk"
+LIBNAME="protobuf"
 IOS_SDK_VERSION=$(xcodebuild -showsdks | grep iphoneos | sort | tail -n 1 | awk '{print substr($NF,9)}')
 echo "ios sdk verion" ${IOS_SDK_VERSION}
 

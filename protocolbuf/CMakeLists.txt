@@ -33,13 +33,24 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m64")
 endif(LINUX32)
 
 include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}/protobuf/
+  ${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/
+  ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 file(GLOB_RECURSE protobuf_source_files
-  "${CMAKE_CURRENT_SOURCE_DIR}/protobuf/*.cc"
-  "${CMAKE_CURRENT_SOURCE_DIR}/protobuf/io/*.cc"
-  "${CMAKE_CURRENT_SOURCE_DIR}/protobuf/stubs/*.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/extension_set.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/generated_message_util.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/message_lite.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/repeated_field.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/wire_format_lite.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/io/coded_stream.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/io/zero_copy_stream_impl_lite.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/io/zero_copy_stream_impl.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/io/zero_copy_stream.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/stubs/common.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/stubs/once.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/stubs/stringprintf.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/google/protobuf/stubs/atomicops_internals_x86_gcc.cc"
   )
 
 
@@ -61,5 +72,5 @@ set_target_properties(protobuf
 endif()
 
 
-install(DIRECTORY protobuf/ DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/include"
+install(DIRECTORY google/protobuf/ DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/include"
           FILES_MATCHING PATTERN "*.h")
