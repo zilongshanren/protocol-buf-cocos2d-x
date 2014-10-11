@@ -33,25 +33,26 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m64")
 endif(LINUX32)
 
 include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}/chipmunk/include/chipmunk
+  ${CMAKE_CURRENT_SOURCE_DIR}/protobuf/
 )
 
-file(GLOB_RECURSE chipmunk_source_files 
-  "${CMAKE_CURRENT_SOURCE_DIR}/chipmunk/src/*.c"
-  "${CMAKE_CURRENT_SOURCE_DIR}/chipmunk/src/constraints/*.c"
+file(GLOB_RECURSE protobuf_source_files
+  "${CMAKE_CURRENT_SOURCE_DIR}/protobuf/*.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/protobuf/io/*.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/protobuf/stubs/*.cc"
   )
 
 
-add_library(chipmunk STATIC ${chipmunk_source_files})
+add_library(protobuf STATIC ${protobuf_source_files})
 
 # we must add this options to compile this library
-SET_SOURCE_FILES_PROPERTIES( ${chipmunk_source_files} PROPERTIES LANGUAGE CXX )
+SET_SOURCE_FILES_PROPERTIES( ${protobuf_source_files} PROPERTIES LANGUAGE CXX )
 
 
 if(ANDROID)
 message(STATUS "android doesn't need ARCHIVE_OUTPUT_DIRECTORY")
 else()
-set_target_properties(chipmunk
+set_target_properties(protobuf
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
@@ -60,5 +61,5 @@ set_target_properties(chipmunk
 endif()
 
 
-install(DIRECTORY chipmunk/include/ DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/include"
+install(DIRECTORY protobuf/ DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/include"
           FILES_MATCHING PATTERN "*.h")
